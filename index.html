@@ -208,6 +208,28 @@
 </style>
 </head>
 <body class="lang-zh-tw">
+<div id="pw-screen" style="position:fixed;inset:0;background:#1a1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:16px">
+  <div style="color:#F7C242;font-size:22px;font-weight:700;letter-spacing:2px">萌え蔵渋谷店</div>
+  <div style="color:#888;font-size:13px;margin-bottom:8px">スタッフハンドブック</div>
+  <input id="pw-input" type="password" placeholder="請輸入密碼" style="padding:10px 16px;font-size:15px;border:1px solid #444;background:#2a2a2a;color:#fff;outline:none;border-radius:0;width:220px;text-align:center" onkeydown="if(event.key==='Enter')checkPw()">
+  <button onclick="checkPw()" style="padding:8px 28px;background:#F7C242;color:#1a1a1a;font-weight:700;font-size:14px;border:none;cursor:pointer;letter-spacing:1px">進入</button>
+  <div id="pw-error" style="color:#e03030;font-size:12px;height:16px"></div>
+</div>
+<script>
+function checkPw(){
+  if(document.getElementById('pw-input').value==='yunyang'){
+    document.getElementById('pw-screen').style.display='none';
+    sessionStorage.setItem('auth','1');
+  } else {
+    document.getElementById('pw-error').textContent='密碼錯誤，請再試一次';
+  }
+}
+if(sessionStorage.getItem('auth')==='1'){
+  document.addEventListener('DOMContentLoaded',function(){
+    document.getElementById('pw-screen').style.display='none';
+  });
+}
+</script>
 <button id="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 
 <nav id="sidebar">
